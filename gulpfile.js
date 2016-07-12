@@ -29,6 +29,8 @@ gulp.task('watch', () => {
   gulp.watch(['build/**/*'], ['reload']);
 });
 
+
+
 gulp.task('copy_html', () => {
   gulp.src('./src/html/**/*.html')
       .pipe(gulp.dest('./build'));
@@ -52,6 +54,13 @@ gulp.task('build_ts', () => {
 gulp.task('copy_images', () => {
   gulp.src('./src/images/**/*')
       .pipe(gulp.dest('./build/images'));
+});
+
+gulp.task('build', ['clean'], () => {
+  gulp.start('copy_html');
+  gulp.start('build_scss');
+  gulp.start('build_ts');
+  gulp.start('copy_images');
 });
 
 gulp.task('clean', () => {
