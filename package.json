@@ -11,7 +11,6 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-connect": "^4.1.0",
-    "gulp-copy": "0.0.2",
     "gulp-sass": "^2.3.2",
     "gulp-typescript": "^2.13.6",
     "gulp-watch": "^4.3.8",
