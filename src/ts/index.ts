@@ -5,6 +5,6 @@ class HelloWorld {
   }
 };
 
-var helloWorld = new HelloWorld("Hello template world!!");
+var helloWorld = new HelloWorld("Hello world!!");
 
 document.getElementById('message').innerHTML = helloWorld.hello();
