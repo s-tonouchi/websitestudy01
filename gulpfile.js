@@ -3,6 +3,7 @@ var webpack = require('gulp-webpack');
 var connect = require('gulp-connect');
 var sass = require('gulp-sass');
 var ts = require('gulp-typescript');
+var del = require('del');
 
 gulp.task('default', ['connect', 'watch']);
 
@@ -53,3 +54,6 @@ gulp.task('copy_images', () => {
       .pipe(gulp.dest('./build/images'));
 });
 
+gulp.task('clean', () => {
+  return del(['build/**/*']);
+});
