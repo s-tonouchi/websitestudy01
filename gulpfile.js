@@ -31,10 +31,12 @@ gulp.task('watch', () => {
 
 
 
-gulp.task('copy_html', () => {
+function copy_html() {
   gulp.src('src/html/**/*.html')
       .pipe(gulp.dest('build'));
-});
+}
+
+gulp.task('copy_html', copy_html());
 
 gulp.task('build_scss', () => {
   return gulp.src('src/scss/**/*.scss')
