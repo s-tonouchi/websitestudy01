@@ -4,7 +4,16 @@ var gutil = require('gulp-util');
 
 var htmllintFunction = function(cb) {
   return gulp.src('src/html/**/*.html')
-             .pipe(htmllint({}, htmllintReporter));
+             .pipe(htmllint({
+                     rules: {
+                       'doctype-first' : 'smart'   ,
+                       'doctype-html5' : 'true'    ,
+                       'head-req-title': 'true'    ,
+                       'html-req-lang' : 'true'    ,
+                       'indent-width'  : '2'       ,
+                       'line-max-len'  : '120'
+                     }
+                   },htmllintReporter));
 }
 
 function htmllintReporter(filepath, issues) {
@@ -16,7 +25,9 @@ function htmllintReporter(filepath, issues) {
                 issue.msg)))});
     process.exitCode = 1;
   } else {
-    gutil.log(gutil.colors.cyan('[gulp-htmllint]') + gutil.colors.yellow(' Passed'));
+    gutil.log(gutil.colors.cyan('[gulp-htmllint]') + 
+              gutil.colors.yellow(filepath)        +
+              gutil.colors.green(' Passed'));
   }
 }
 
