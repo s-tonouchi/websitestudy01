@@ -2,9 +2,9 @@ var gulp      = require('gulp');
 var gutil     = require('gulp-util');
 var htmlv     = require('gulp-html-validator');
 var intercept = require('gulp-intercept');
-var error     = require('../util/errorlog');
-var warn      = require('../util/warnlog');
-var info      = require('../util/infolog');
+var error     = require('../util/error');
+var warn      = require('../util/warn');
+var info      = require('../util/info');
 
 var htmlValidateFunction = function(cb) {
   return gulp.src('src/html/**/*.html')
