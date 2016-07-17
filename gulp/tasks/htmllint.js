@@ -15,7 +15,9 @@ function htmllintReporter(filepath, issues) {
                 gutil.colors.cyan('(' + issue.code + ') ' + 
                 issue.msg)))});
     process.exitCode = 1;
-  };
+  } else {
+    gutil.log(gutil.colors.cyan('[gulp-htmllint]') + gutil.colors.yellow(' Passed'));
+  }
 }
 
 gulp.task('htmllint', htmllintFunction);
