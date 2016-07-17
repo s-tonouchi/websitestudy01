@@ -4,7 +4,7 @@ var htmlv     = require('gulp-html-validator');
 var intercept = require('gulp-intercept');
 
 var htmlValidateFunction = function(cb) {
-  gulp.src('src/html/**/*.html')
+  return gulp.src('src/html/**/*.html')
       .pipe(htmlv({format: 'json'}))
       .pipe(intercept(function(file){
           json = JSON.parse(file.contents.toString());
