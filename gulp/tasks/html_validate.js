@@ -8,14 +8,21 @@ var htmlValidateFunction = function(cb) {
       .pipe(htmlv({format: 'json'}))
       .pipe(intercept(function(file){
           json = JSON.parse(file.contents.toString());
-          json.messages.forEach(function (message) {
-            gutil.log(
-              gutil.colors.cyan('[gulp-html-validator] ') +
-              gutil.colors.red(message.type)             +
-              gutil.colors.white(' [' + message.lastLine + ':' + message.firstColumn + '] ' + message.message)
-            )
-          });
-      }));
+          if(json.messages.length > 0){
+            json.messages.forEach(
+              function (message) {
+                gutil.log(gutil.colors.cyan('[gulp-html-validator] ') +
+                          gutil.colors.white(file.path) +
+                          gutil.colors.red(' [' + message.type + ']')             +
+                          gutil.colors.white(' [' + message.lastLine + ':' + message.firstColumn + '] ' + message.message));
+              });
+            } else {
+              gutil.log(gutil.colors.cyan('[gulp-html-validator] ') +
+                        gutil.colors.white(file.path) +
+                        gutil.colors.green(' ok'));
+            }
+            return file;
+          }))
 };
 
 gulp.task('html_validate', htmlValidateFunction);
