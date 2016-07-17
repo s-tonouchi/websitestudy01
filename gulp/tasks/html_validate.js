@@ -14,10 +14,10 @@ var htmlValidateFunction = function(cb) {
           if(json.messages.length > 0){
             json.messages.forEach(
               function (message) {
-                error('html_validate', file,  '[' + message.lastLine + ':' + message.firstColumn + '] ' + message.message);
+                error('html_validate', file.path,  '[' + message.lastLine + ':' + message.firstColumn + '] ' + message.message);
               });
             } else {
-                info('html_validate', file,  'ok');
+                info('html_validate', file.path,  'ok');
             }
             return file;
           }))
