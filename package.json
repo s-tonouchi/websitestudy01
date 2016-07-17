@@ -13,6 +13,7 @@
     "gulp": "^3.9.1",
     "gulp-connect": "^4.1.0",
     "gulp-html-validator": "0.0.5",
+    "gulp-htmllint": "0.0.9",
     "gulp-sass": "^2.3.2",
     "gulp-sass-lint": "^1.2.0",
     "gulp-tslint": "^6.0.1",
