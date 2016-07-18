@@ -5,7 +5,7 @@ var info      = require('../util/info');
 var error     = require('../util/error');
 
 var tslintFunction = function(cb) {
-  gulp.src('src/ts/**/*.ts')
+  return gulp.src('src/ts/**/*.ts')
       .pipe(tslint({formatter: 'prose'}))
       .pipe(tslint.report({}))
       .on('error', function(e) {

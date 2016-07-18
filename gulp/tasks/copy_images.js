@@ -6,6 +6,7 @@ var copyImagesFunction = function(cb) {
   gulp.src('src/images/**/*')
       .pipe(intercept(function(file){
          info('copy_images', file.path, 'copying');
+         return file;
        }))
       .pipe(gulp.dest('build/images'));
 };
