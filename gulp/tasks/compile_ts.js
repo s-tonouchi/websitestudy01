@@ -10,8 +10,6 @@ var compileTsFunction = function(cb) {
              }))
              .on('error', function(e){
                 error('build_ts', '', 'compile error');
-                return e.message;
-
               })
              .pipe(gulp.dest('build/js'));
 
