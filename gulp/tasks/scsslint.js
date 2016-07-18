@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var sassLint  = require('gulp-sass-lint');
 
 var scsslintFunction = function(cb) {
-  gulp.src('src/scss/**/*.scss')
+  return gulp.src('src/scss/**/*.scss')
       .pipe(sassLint())
       .pipe(sassLint.format())
       .pipe(sassLint.failOnError());
