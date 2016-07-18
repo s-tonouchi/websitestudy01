@@ -2,6 +2,8 @@ var gulp      = require('gulp');
 var gutil     = require('gulp-util');
 var htmlv     = require('gulp-html-validator');
 var intercept = require('gulp-intercept');
+var error     = require('../util/error');
+var info      = require('../util/info');
 
 var htmlValidateFunction = function(cb) {
   return gulp.src('src/html/**/*.html')
@@ -11,15 +13,10 @@ var htmlValidateFunction = function(cb) {
           if(json.messages.length > 0){
             json.messages.forEach(
               function (message) {
-                gutil.log(gutil.colors.cyan('[gulp-html-validator] ') +
-                          gutil.colors.white(file.path) +
-                          gutil.colors.red(' [' + message.type + ']')             +
-                          gutil.colors.white(' [' + message.lastLine + ':' + message.firstColumn + '] ' + message.message));
+                error('html_validate', file.path,  '[' + message.lastLine + ':' + message.firstColumn + '] ' + message.message);
               });
             } else {
-              gutil.log(gutil.colors.cyan('[gulp-html-validator] ') +
-                        gutil.colors.white(file.path) +
-                        gutil.colors.green(' ok'));
+                info('html_validate', file.path,  'ok');
             }
             return file;
           }))

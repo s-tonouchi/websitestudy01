@@ -1,12 +1,12 @@
 var gulp      = require('gulp');
 var gutil     = require('gulp-util');
 var intercept = require('gulp-intercept');
+var info      = require('../util/info');
 
 var copyHtmlFunction = function(cb) {
   gulp.src('src/html/**/*.html')
       .pipe(intercept(function(file){
-         gutil.log(gutil.colors.cyan('[copy_html] ') +
-                   gutil.colors.white('copying ' + file.path));
+         info('copy_html', file.path, 'copyig');
          return file;
        }))
       .pipe(gulp.dest('build'));
