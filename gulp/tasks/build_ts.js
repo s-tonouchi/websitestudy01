@@ -1,16 +1,10 @@
-var gulp = require('gulp');
-var ts = require('gulp-typescript');
+var gulp         = require('gulp');
+var run_sequence = require('run-sequence');
+var error        = require('../util/error');
 
-
-var buildTsFunction = function(cb) {
-  return gulp.src('src/ts/**/*.ts')
-             .pipe(ts({
-               noImplicitAny: true,
-               out: 'output.js'
-             }))
-             .pipe(gulp.dest('build/js'));
-
+var buildTSFunction = function(cb) {
+  return run_sequence('tslint', 'compile_ts');
 };
 
-gulp.task('build_ts', buildTsFunction);
-module.exports = buildTsFunction; 
+gulp.task('build_ts', buildTSFunction);
+module.exports = buildTSFunction; 

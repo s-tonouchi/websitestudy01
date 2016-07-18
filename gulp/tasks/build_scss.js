@@ -1,12 +1,10 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp         = require('gulp');
+var run_sequence = require('run-sequence');
+var error        = require('../util/error');
 
-
-var buildScssFunction = function(cb) {
-  return gulp.src('src/scss/**/*.scss')
-             .pipe(sass().on('error', sass.logError))
-             .pipe(gulp.dest('build/css'));
+var buildSCSSFunction = function(cb) {
+  return run_sequence('scsslint', 'compile_scss');
 };
 
-gulp.task('build_scss', buildScssFunction);
-module.exports = buildScssFunction; 
+gulp.task('build_scss', buildSCSSFunction);
+module.exports = buildSCSSFunction; 
