@@ -1,10 +1,14 @@
-var gulp = require('gulp');
+var gulp     = require('gulp');
+var watch    = require('gulp-watch');
+var sequence = require('gulp-watch-sequence');
 
 gulp.task('watch', () => {
-  gulp.watch(['src/html/**/*.html'], ['build_html']);
-  gulp.watch(['src/scss/**/*.scss'], ['build_scss']);
-  gulp.watch(['src/ts/**/*.ts'], ['build_ts']);
-  gulp.watch(['src/images/**/*'], ['copy_images']);
+  var queue = sequence(300);
 
-  gulp.watch(['build/**/*'], ['reload']);
+  watch('src/html/**/*.html', {}, queue.getHandler('htmllint', 'html_validate', 'copy_html'));
+  watch('src/scss/**/*.scss', {}, queue.getHandler('build_scss'));
+  watch('src/ts/**/*.ts'    , {}, queue.getHandler('tslint', 'compile_ts'));
+  watch('src/images/**/*'   , {}, queue.getHandler('copy_images'));
+
+  watch('build/**/*', {}, queue.getHandler('reload'));
 });
